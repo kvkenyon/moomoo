@@ -4,17 +4,17 @@ module MooMoo where
 
 type Scalar = Double
 
-add :: Scalar -> Scalar -> Scalar
-add = (+)
+f :: Scalar -> Scalar -> Scalar
+f x y = log x + (x * y) - sin y
 
-mult :: Scalar -> Scalar -> Scalar
-mult = (*)
+log' :: Scalar -> Scalar
+log' x = 1 / x
 
-ln :: Scalar -> Scalar
-ln = log
+mult' :: Scalar -> Scalar -> Scalar
+mult' x y = x
 
-sin :: Scalar -> Scalar
-sin = Prelude.sin
+f' :: Scalar -> Scalar -> Scalar
+f' x y = 1 / x + y
 
 newtype Unary = Unary (Scalar -> Scalar)
 
