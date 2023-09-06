@@ -1,6 +1,7 @@
 module Tensor
   ( zeros,
     prettyPrint,
+    (@@),
   )
 where
 
@@ -11,11 +12,23 @@ type Scalar = Double
 data Tensor a = Nil | Val a | T [Tensor a] (Tensor a)
   deriving (Show)
 
+infixr 5 @@
+
+(@@) :: [Tensor a] -> Tensor a -> Tensor a
+(@@) = T
+
+(<<) :: [Tensor a] -> [Tensor a]
+(<<) a = a
+
+row :: Int -> Scalar -> Tensor Scalar
+row 0 _ = Nil
+row w val = replicate w (Val val) @@ Nil
+
 zeros :: Shape -> Tensor Scalar
 zeros [] = Nil
-zeros [w] = T (replicate w $ Val 0) Nil
-zeros [h, w] = T (replicate h (T (replicate w (Val 0)) Nil)) Nil
-zeros (x : xs) = T (replicate x (zeros xs)) Nil
+zeros [w] = row w 0
+zeros [h, w] = replicate h (row w 0) @@ Nil
+zeros (x : xs) = replicate x (zeros xs) @@ Nil
 
 pretty :: Tensor Scalar -> String
 pretty Nil = ""

@@ -1,5 +1,7 @@
 module MooMoo where
 
+import Tensor (prettyPrint, zeros)
+
 -- Build a computational graph for
 -- a multivariable function of scalars
 -- f(x1, y1) = ln(x1) + x1*x2 - sin(x2)
