@@ -17,3 +17,6 @@ pretty :: Tensor Scalar -> String
 pretty Nil = ""
 pretty (Val x) = show x ++ " "
 pretty (T vec rest) = concatMap pretty vec ++ "\n" ++ pretty rest
+
+prettyPrint :: Tensor Scalar -> String
+prettyPrint t = init . init $ pretty t
