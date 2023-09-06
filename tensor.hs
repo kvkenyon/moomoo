@@ -1,4 +1,8 @@
-module Tensor where
+module Tensor
+  ( zeros,
+    prettyPrint,
+  )
+where
 
 type Shape = [Int]
 
